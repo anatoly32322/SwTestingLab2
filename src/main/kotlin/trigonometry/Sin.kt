@@ -1,14 +1,18 @@
 package trigonometry
 
 import CsvWriter.Companion.writeCsv
-import java.nio.file.Files
-import java.nio.file.Paths
-import java.nio.file.StandardOpenOption
 import kotlin.math.*
 
 class Sin {
     companion object {
-        fun calc(x: Double, eps: Double = 10.0.pow(-9.0)): Double {
+        fun calc(x_: Double, eps: Double = 10.0.pow(-9.0)): Double {
+            if (x_.equals(Double.NaN))
+                return Double.NaN
+            var x = x_
+            while (x > Math.PI)
+                x -= 2 * Math.PI
+            while (x < -Math.PI)
+                x += 2 * Math.PI
             var ans = 0.0
             var tmp = 1.0
             var coef = 1

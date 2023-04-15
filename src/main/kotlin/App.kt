@@ -3,10 +3,10 @@ import logarithms.*
 import kotlin.math.*
 
 fun main() {
-    val x = 2.5
+    val x = Double.NaN
     val y = 10.0
-    println(1/tan(x))
-    println(Cot.calc(x))
+    println(sin(x))
+    println(Sin.calc(x))
     println(Function.calc(x))
     return
 }

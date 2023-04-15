@@ -7,6 +7,8 @@ import kotlin.math.pow
 class Ln {
     companion object {
         fun calc(x: Double, eps: Double = 10.0.pow(-9.0)): Double {
+            if (x.equals(Double.NaN))
+                return Double.NaN
             if (x <= 0.0)
                 throw Exception("\'x\' must be positive")
             val const: Double = (x - 1).pow(2) / (x + 1).pow(2)
