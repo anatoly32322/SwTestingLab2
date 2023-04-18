@@ -1,13 +1,12 @@
 package trigonometry
 
-import CsvWriter.Companion.writeCsv
+import CsvWriter
 import kotlin.math.*
 
-object Sin {
-    @JvmStatic
+class Sin {
     fun calc(x_: Double, eps: Double = 10.0.pow(-9.0)): Double {
         if (x_.equals(Double.NaN)) {
-            writeCsv(Double.NaN, Double.NaN)
+            CsvWriter.writeCsv(Double.NaN, Double.NaN)
             return Double.NaN
         }
         var x = x_
@@ -29,7 +28,7 @@ object Sin {
             i++
             coef *= -1
         }
-        writeCsv(x, ans)
+        CsvWriter.writeCsv(x, ans)
         return ans
     }
 }

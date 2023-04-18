@@ -1,18 +1,17 @@
 package logarithms
 
-import CsvWriter.Companion.writeCsv
 import kotlin.math.absoluteValue
 import kotlin.math.pow
 
-object Ln {
-    @JvmStatic
+class Ln {
+
     fun calc(x: Double, eps: Double = 10.0.pow(-9.0)): Double {
         if (x.equals(Double.NaN)) {
-            writeCsv(Double.NaN, Double.NaN)
+            CsvWriter.writeCsv(Double.NaN, Double.NaN)
             return Double.NaN
         }
         if (x <= 0.0)
-            throw Exception("\'x\' must be positive")
+            return Double.NaN
         val const: Double = (x - 1).pow(2) / (x + 1).pow(2)
         var ans: Double = 0.0
         var cur: Double = (x - 1) / (x + 1)
@@ -22,7 +21,7 @@ object Ln {
             cur = (2 * step - 1) * cur * const / (2 * step + 1)
             step++
         }
-        writeCsv(x, ans)
+        CsvWriter.writeCsv(x, ans)
         return ans * 2
     }
 }
