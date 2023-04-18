@@ -1,5 +1,6 @@
 package trigonometry
 
+import csvWriter.CsvWriter
 import kotlin.math.*
 
 class Cot {

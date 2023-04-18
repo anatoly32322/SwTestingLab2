@@ -1,3 +1,5 @@
+package function
+
 import trigonometry.*
 import logarithms.*
 import kotlin.math.pow

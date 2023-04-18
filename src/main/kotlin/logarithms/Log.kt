@@ -1,5 +1,6 @@
 package logarithms
 
+import csvWriter.CsvWriter
 import kotlin.math.pow
 
 class Log {

@@ -1,6 +1,6 @@
 package trigonometry
 
-import CsvWriter
+import csvWriter.CsvWriter
 import kotlin.math.*
 
 class Sin {

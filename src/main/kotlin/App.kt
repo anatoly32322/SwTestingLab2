@@ -1,6 +1,4 @@
-import trigonometry.*
-import logarithms.*
-import kotlin.math.*
+import function.Function
 
 fun main() {
     val x = 1.0
