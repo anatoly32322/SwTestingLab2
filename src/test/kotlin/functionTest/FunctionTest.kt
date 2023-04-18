@@ -8,14 +8,16 @@ import function.*
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvFileSource
 import org.mockito.Mockito
 
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class FunctionTest {
 
-    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     companion object {
         val logCsvPath: String = "./src/main/resources/log.csv"
         val lnCsvPath: String = "./src/main/resources/ln.csv"
@@ -32,6 +34,7 @@ class FunctionTest {
         val sinMock: Sin = Mockito.mock(Sin::class.java)
         val tanMock: Tan = Mockito.mock(Tan::class.java)
 
+        @JvmStatic
         @BeforeAll
         fun setup() {
             val reader: CsvReader = csvReader()
@@ -85,145 +88,144 @@ class FunctionTest {
                 }
             }
         }
+    }
+    @ParameterizedTest
+    @CsvFileSource(resources = ["/in.csv"])
+    @DisplayName("test log")
+    fun testLog(value: Double, expected: Double) {
+        Assertions.assertEquals(
+            expected,
+            Function(
+                sn = sinMock,
+                cs = cosMock,
+                ct = cotMock,
+                sc = secMock,
+                tn = tanMock,
+                ln = lnMock,
+                lg = Log()
+            ).calc(value),
+            0.001
+        )
+    }
 
-        @ParameterizedTest
-        @CsvFileSource(resources = ["/in.csv"])
-        @DisplayName("test log")
-        fun testLog(value: Double, expected: Double) {
-            Assertions.assertEquals(
-                expected,
-                Function(
-                    sn = sinMock,
-                    cs = cosMock,
-                    ct = cotMock,
-                    sc = secMock,
-                    tn = tanMock,
-                    ln = lnMock,
-                    lg = Log()
-                ).calc(value),
-                0.001
-            )
-        }
+    @ParameterizedTest
+    @CsvFileSource(resources = ["/in.csv"])
+    @DisplayName("test ln")
+    fun testLn(value: Double, expected: Double) {
+        Assertions.assertEquals(
+            expected,
+            Function(
+                sn = sinMock,
+                cs = cosMock,
+                ct = cotMock,
+                sc = secMock,
+                tn = tanMock,
+                ln = Ln(),
+                lg = logMock
+            ).calc(value),
+            0.001
+        )
+    }
 
-        @ParameterizedTest
-        @CsvFileSource(resources = ["/in.csv"])
-        @DisplayName("test ln")
-        fun testLn(value: Double, expected: Double) {
-            Assertions.assertEquals(
-                expected,
-                Function(
-                    sn = sinMock,
-                    cs = cosMock,
-                    ct = cotMock,
-                    sc = secMock,
-                    tn = tanMock,
-                    ln = Ln(),
-                    lg = logMock
-                ).calc(value),
-                0.001
-            )
-        }
+    @ParameterizedTest
+    @CsvFileSource(resources = ["/in.csv"])
+    @DisplayName("test sin")
+    fun testSin(value: Double, expected: Double) {
+        Assertions.assertEquals(
+            expected,
+            Function(
+                sn = Sin(),
+                cs = cosMock,
+                ct = cotMock,
+                sc = secMock,
+                tn = tanMock,
+                ln = lnMock,
+                lg = logMock
+            ).calc(value),
+            0.001
+        )
+    }
 
-        @ParameterizedTest
-        @CsvFileSource(resources = ["/in.csv"])
-        @DisplayName("test sin")
-        fun testSin(value: Double, expected: Double) {
-            Assertions.assertEquals(
-                expected,
-                Function(
-                    sn = Sin(),
-                    cs = cosMock,
-                    ct = cotMock,
-                    sc = secMock,
-                    tn = tanMock,
-                    ln = lnMock,
-                    lg = logMock
-                ).calc(value),
-                0.001
-            )
-        }
+    @ParameterizedTest
+    @CsvFileSource(resources = ["/in.csv"])
+    @DisplayName("test cos")
+    fun testCos(value: Double, expected: Double) {
+        Assertions.assertEquals(
+            expected,
+            Function(
+                sn = sinMock,
+                cs = Cos(),
+                ct = cotMock,
+                sc = secMock,
+                tn = tanMock,
+                ln = lnMock,
+                lg = logMock
+            ).calc(value),
+            0.001
+        )
+    }
 
-        @ParameterizedTest
-        @CsvFileSource(resources = ["/in.csv"])
-        @DisplayName("test cos")
-        fun testCos(value: Double, expected: Double) {
-            Assertions.assertEquals(
-                expected,
-                Function(
-                    sn = sinMock,
-                    cs = Cos(),
-                    ct = cotMock,
-                    sc = secMock,
-                    tn = tanMock,
-                    ln = lnMock,
-                    lg = logMock
-                ).calc(value),
-                0.001
-            )
-        }
+    @ParameterizedTest
+    @CsvFileSource(resources = ["/in.csv"])
+    @DisplayName("test cot")
+    fun testCot(value: Double, expected: Double) {
+        Assertions.assertEquals(
+            expected,
+            Function(
+                sn = sinMock,
+                cs = cosMock,
+                ct = Cot(),
+                sc = secMock,
+                tn = tanMock,
+                ln = lnMock,
+                lg = logMock
+            ).calc(value),
+            0.001
+        )
+    }
 
-        @ParameterizedTest
-        @CsvFileSource(resources = ["/in.csv"])
-        @DisplayName("test cot")
-        fun testCot(value: Double, expected: Double) {
-            Assertions.assertEquals(
-                expected,
-                Function(
-                    sn = sinMock,
-                    cs = cosMock,
-                    ct = Cot(),
-                    sc = secMock,
-                    tn = tanMock,
-                    ln = lnMock,
-                    lg = logMock
-                ).calc(value),
-                0.001
-            )
-        }
+    @ParameterizedTest
+    @CsvFileSource(resources = ["/in.csv"])
+    @DisplayName("test sec")
+    fun testSec(value: Double, expected: Double) {
+        Assertions.assertEquals(
+            expected,
+            Function(
+                sn = sinMock,
+                cs = cosMock,
+                ct = cotMock,
+                sc = Sec(),
+                tn = tanMock,
+                ln = lnMock,
+                lg = logMock
+            ).calc(value),
+            0.001
+        )
+    }
 
-        @ParameterizedTest
-        @CsvFileSource(resources = ["/in.csv"])
-        @DisplayName("test sec")
-        fun testSec(value: Double, expected: Double) {
-            Assertions.assertEquals(
-                expected,
-                Function(
-                    sn = sinMock,
-                    cs = cosMock,
-                    ct = cotMock,
-                    sc = Sec(),
-                    tn = tanMock,
-                    ln = lnMock,
-                    lg = logMock
-                ).calc(value),
-                0.001
-            )
-        }
+    @ParameterizedTest
+    @CsvFileSource(resources = ["/in.csv"])
+    @DisplayName("test tan")
+    fun testTan(value: Double, expected: Double) {
+        Assertions.assertEquals(
+            expected,
+            Function(
+                sn = sinMock,
+                cs = cosMock,
+                ct = cotMock,
+                sc = secMock,
+                tn = Tan(),
+                ln = lnMock,
+                lg = logMock
+            ).calc(value),
+            0.001
+        )
+    }
 
-        @ParameterizedTest
-        @CsvFileSource(resources = ["/in.csv"])
-        @DisplayName("test tan")
-        fun testTan(value: Double, expected: Double) {
-            Assertions.assertEquals(
-                expected,
-                Function(
-                    sn = sinMock,
-                    cs = cosMock,
-                    ct = cotMock,
-                    sc = secMock,
-                    tn = Tan(),
-                    ln = lnMock,
-                    lg = logMock
-                ).calc(value),
-                0.001
-            )
-        }
-
-        @ParameterizedTest
-        @CsvFileSource(resources = ["/in.csv"])
-        @DisplayName("test function")
-        fun testFunction(value: Double, expected: Double) {
-            Assertions.assertEquals(Function().calc(value), expected, 0.001)
-        }
+    @ParameterizedTest
+    @CsvFileSource(resources = ["/in.csv"])
+    @DisplayName("test function")
+    fun testFunction(value: Double, expected: Double) {
+        Assertions.assertEquals(Function().calc(value), expected, 0.001)
     }
 }
