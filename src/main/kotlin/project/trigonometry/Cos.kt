@@ -3,8 +3,8 @@ package project.trigonometry
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-class Cos {
-    fun calc(x_: Double, eps: Double = 10.0.pow(-9.0)): Double {
+class Cos : TrigonometryInterface {
+    override fun calc(x_: Double, eps: Double): Double {
         if (x_.equals(Double.NaN))
             return Double.NaN
         var x = x_

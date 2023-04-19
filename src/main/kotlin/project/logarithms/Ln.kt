@@ -3,9 +3,9 @@ package project.logarithms
 import kotlin.math.absoluteValue
 import kotlin.math.pow
 
-class Ln {
+class Ln : LogarithmsInterface {
 
-    fun calc(x: Double, eps: Double = 10.0.pow(-9.0)): Double {
+    override fun calc(x: Double, base: Double, eps: Double): Double {
         if (x.equals(Double.NaN))
             return Double.NaN
         if (x <= 0.0)

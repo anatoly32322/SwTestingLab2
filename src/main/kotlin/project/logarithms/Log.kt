@@ -2,12 +2,12 @@ package project.logarithms
 
 import kotlin.math.pow
 
-class Log {
+class Log : LogarithmsInterface {
 
-    fun calc(x: Double, y: Double, eps: Double = 10.0.pow(-9.0)): Double {
-        if (y == 1.0)
+    override fun calc(x: Double, base: Double, eps: Double): Double {
+        if (base == 1.0)
             return Double.NaN
-        val ans = Ln().calc(x, eps) / Ln().calc(y, eps)
+        val ans = Ln().calc(x, eps) / Ln().calc(base, eps)
         return ans
     }
 }

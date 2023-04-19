@@ -1,9 +1,9 @@
 package project.trigonometry
 
-import kotlin.math.*
+import kotlin.math.abs
 
-class Cot {
-    fun calc(x: Double, eps: Double = 10.0.pow(-9.0)): Double {
+class Cot : TrigonometryInterface {
+    override fun calc(x: Double, eps: Double): Double {
         val sn = Sin().calc(x, eps)
         if (abs(sn) < 1e-9)
             return Double.NaN
