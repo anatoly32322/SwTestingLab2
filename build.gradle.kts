@@ -15,9 +15,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
-//    implementation(kotlin("script-runtime"))
-//    testImplementation("org.mockito:mockito-core:4.1.0")
-    testImplementation("org.mockito:mockito-inline:4.1.0")
+    testImplementation("org.mockito:mockito-inline:4.3.1")
     implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.8.0")
 }
 
@@ -29,9 +27,9 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-//application {
-//    mainClass.set("AppKt")
-//}
+application {
+    mainClass.set("AppKt")
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8

@@ -1,6 +1,5 @@
-package logarithms
+package project.logarithms
 
-import csvWriter.CsvWriter
 import kotlin.math.pow
 
 class Log {
@@ -9,7 +8,6 @@ class Log {
         if (y == 1.0)
             return Double.NaN
         val ans = Ln().calc(x, eps) / Ln().calc(y, eps)
-        CsvWriter.writeCsv(x, ans)
         return ans
     }
 }
